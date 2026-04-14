@@ -1,0 +1,25 @@
+# Hardhat
+artifacts/
+cache/
+node_modules/
+
+# Environment variables
+.env
+
+# Coverage
+coverage/
+coverage.json
+
+# Typechain
+typechain/
+typechain-types/
+
+# Hardhat Ignition
+ignition/deployments/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
