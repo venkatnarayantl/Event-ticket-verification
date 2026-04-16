@@ -51,4 +51,11 @@ contract TicketNFT {
         tickets[ticketId].isValid = false;
         emit TicketUsed(ticketId);
     }
+
+    function getTicketCount() public view returns (uint256) {
+    return ticketCount;
 }
+
+}
+
+

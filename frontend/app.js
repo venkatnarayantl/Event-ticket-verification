@@ -7,6 +7,7 @@ const CONTRACT_ABI = [
   "function validateTicket(uint256 ticketId) public view returns (bool isValid, string memory eventName, string memory ownerName)",
   "function useTicket(uint256 ticketId) public",
   "function ticketCount() public view returns (uint256)",
+  "function getTicketCount() public view returns (uint256)",
   "event TicketCreated(uint256 ticketId, string eventName, string ownerName)",
   "event TicketUsed(uint256 ticketId)"
 ];
@@ -63,7 +64,8 @@ document.getElementById("generateBtn").addEventListener("click", async () => {
     await tx.wait();
 
     // Get the ticket count (which is the new ticket's ID)
-    const id = "1";
+    const id = (await contract.getTicketCount()).toString();
+
 
     document.getElementById("generateStatus").innerText = "✅ Ticket Created! ID: " + id;
     document.getElementById("ticketIdDisplay").innerText = "Ticket ID: " + id;
