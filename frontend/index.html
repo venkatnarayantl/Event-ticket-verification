@@ -1,60 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Event Ticket Verification</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- QR Code Generator Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <!-- Ethers.js to connect to blockchain -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
-</head>
-<body>
-
-  <h1>🎫 Event Ticket Verification System</h1>
-
-  <!-- SECTION 1: Connect Wallet -->
-  <div id="wallet-section">
-    <h2>Step 1: Connect Wallet</h2>
-    <button id="connectBtn">Connect MetaMask</button>
-    <p id="walletAddress">Not connected</p>
-  </div>
-
-  <hr/>
-
-  <!-- SECTION 2: Generate Ticket -->
-  <div id="generate-section">
-    <h2>Step 2: Generate Ticket</h2>
-    <input type="text" id="eventName" placeholder="Event Name" />
-    <input type="text" id="ownerName" placeholder="Owner Name" />
-    <button id="generateBtn">Generate Ticket</button>
-    <p id="generateStatus"></p>
-    <!-- QR Code will appear here -->
-    <div id="qrcode"></div>
-    <p id="ticketIdDisplay"></p>
-  </div>
-
-  <hr/>
-
-  <!-- SECTION 3: Verify Ticket -->
-  <div id="verify-section">
-    <h2>Step 3: Verify Ticket</h2>
-    <input type="number" id="verifyId" placeholder="Enter Ticket ID" />
-    <button id="verifyBtn">Verify Ticket</button>
-    <p id="verifyStatus"></p>
-  </div>
-
-  <hr/>
-
-  <!-- SECTION 4: Use Ticket -->
-  <div id="use-section">
-    <h2>Step 4: Mark Ticket as Used</h2>
-    <input type="number" id="useId" placeholder="Enter Ticket ID" />
-    <button id="useBtn">Mark as Used</button>
-    <p id="useStatus"></p>
-  </div>
-
-  <script src="app.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>frontend</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
