@@ -79,7 +79,7 @@ function App() {
       <header className="border-b border-white/10 p-6 flex justify-between items-center bg-white/[0.02] backdrop-blur-md sticky top-0 z-50">
         <div className="flex items-center gap-3">
           <div className={`w-3 h-3 rounded-full animate-pulse ${isOrganizer ? 'bg-amber-500' : 'bg-cyan-500'}`} />
-          <h1 className="text-xl font-bold tracking-tighter uppercase">ChainPass <span className="text-white/40">v1.0</span></h1>
+          <h1 className="text-xl font-bold tracking-tighter uppercase"><span className="text-white/40"></span></h1>
         </div>
         
         {!account ? (
@@ -99,8 +99,8 @@ function App() {
       <main className="max-w-7xl mx-auto p-8">
         {!account ? (
           <div className="h-[60vh] flex flex-col items-center justify-center text-center">
-            <h2 className="text-5xl font-black mb-4 tracking-tighter">EVENT VERIFICATION <br/>ON-CHAIN</h2>
-            <button onClick={connectWallet} className="mt-6 px-10 py-4 bg-cyan-500 text-black font-black rounded-full">GET STARTED</button>
+            <h2 className="text-5xl font-black mb-4 tracking-tighter">EVENT TICKET VERIFICATION<br/>ON-CHAIN</h2>
+            
           </div>
         ) : (
           isOrganizer ? <OrganizerDashboard /> : <AttendeeDashboard account={account} />

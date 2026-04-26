@@ -65,9 +65,11 @@ pragma solidity ^0.8.0;
 contract TicketNFT {
     struct Event {
         uint256 id;
-        string name;
-        string date;
-        bool active;
+    string name;
+    string date;
+    string venue;      // Index 3
+    string startTime;  // Index 4
+    bool active;
     }
 
     struct Ticket { 
@@ -87,10 +89,15 @@ contract TicketNFT {
     constructor() { organizer = msg.sender; }
 
     // 1. ORGANIZER: Creates the Event
-    function createEvent(string memory _name, string memory _date) public {
-        require(msg.sender == organizer, "Only organizer");
+    function createEvent(
+        string memory _name, 
+        string memory _date, 
+        string memory _venue, 
+        string memory _startTime
+    ) public {
+        // require(msg.sender == organizer, "Only organizer");
         eventCount++;
-        events[eventCount] = Event(eventCount, _name, _date, true);
+        events[eventCount] = Event(eventCount, _name, _date, _venue, _startTime, true);
     }
 
     // 2. ATTENDEE: Registers/Books themselves
