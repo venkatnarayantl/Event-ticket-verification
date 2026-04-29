@@ -54,7 +54,7 @@
 // export default App; 
 
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react'; 
 import { ethers } from 'ethers';
 import { ORGANIZER_ADDRESS, switchToLocal } from './contract';
 import OrganizerDashboard from './components/OrganizerDashboard';
@@ -63,6 +63,20 @@ import AttendeeDashboard from './components/AttendeeDashboard';
 function App() {
   const [account, setAccount] = useState(null);
   const [isOrganizer, setIsOrganizer] = useState(false);
+
+  // ADD THIS: Listen for account changes
+  useEffect(() => {
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", (accounts) => {
+        if (accounts.length > 0) {
+          setAccount(accounts[0]);
+          setIsOrganizer(accounts[0].toLowerCase() === ORGANIZER_ADDRESS.toLowerCase());
+        } else {
+          setAccount(null);
+        }
+      });
+    }
+  }, []);
 
   const connectWallet = async () => {
     if (window.ethereum) {

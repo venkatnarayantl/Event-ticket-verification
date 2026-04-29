@@ -110,7 +110,7 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { Html5QrcodeScanner } from 'html5-qrcode';
-import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../contract';
+import { CONTRACT_ADDRESS, CONTRACT_ABI,ORGANIZER_ADDRESS } from '../contract';
 
 export default function QRScanner() {
   const [id, setId] = useState("");
@@ -169,18 +169,25 @@ export default function QRScanner() {
   }, [scannerActive]);
 
   const grantEntry = async () => {
-    try {
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const signer = await provider.getSigner();
-      const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
-      const tx = await contract.verifyAndUseTicket(id);
-      await tx.wait();
-      alert("ENTRY GRANTED!");
-      setData(null); setId(""); setScannerActive(true);
-    } catch {
-      alert("Verification failed.");
-    }
-  };
+  try {
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
+    
+    // Check local address vs expected organizer address
+    console.log("Current Signer:", signer.address);
+    console.log("Expected Organizer:", ORGANIZER_ADDRESS);
+
+    const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+    const tx = await contract.verifyAndUseTicket(id);
+    await tx.wait();
+    alert("ENTRY GRANTED!");
+    setData(null); setId(""); setScannerActive(true);
+  } catch (err) {
+    // CHANGE THIS: Show the actual error
+    console.error(err);
+    alert(`Verification failed: ${err.reason || err.message}`);
+  }
+};
 
   return (
     <div className="max-w-md mx-auto space-y-6">
